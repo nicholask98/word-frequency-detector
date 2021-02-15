@@ -1,41 +1,44 @@
-user_doc = input('Paste your document here: \n')
-
 words_used = {}
 
-# Create new string for each new word based on spaces
+punctuation = ('.', ',', '!', '?', ';', ':', '[', ']', '{', '}', '(', ')', '"')
+common_words = ('THE', 'A', 'AN', 'AND', 'BE', 'TO', 'HAVE', 'DO', "DON'T", 'SAY', 
+'OR', 'BUT', 'OF', 'FOR', 'IN', 'WITH', 'ON', 'FROM', 'AT', 'BY', 'IT', 'IS', 'IF', 
+'I', 'YOU', 'HE', 'SHE', 'THEY', 'WE', 'HIS', 'HERS', 'THAT', 'THIS', 'NOT', 'TO')
 
+
+def add_word(word):
+    if word in words_used: # For existing words
+        words_used[word] += 1
+    else: # For new words
+        words_used[word] = 1
+
+user_doc = input('Paste your document here: \n')
 current_word = ''
-for character in range(len(user_doc)):
-    # Compiles all characters before the next space into one string: current_word
-    if user_doc[character] != ' ':
+for character in range(len(user_doc)): # Create new string for each new word based on spaces
+     
+    if user_doc[character] in punctuation: # checks for punctuation and ignores it
+        continue
+
+    if user_doc[character] != ' ': # Compiles all characters before the next space into one string: current_word
         current_word += user_doc[character]
+        continue
 
-        # FIXME: check last word in document if it doesn't have a space
-    elif (user_doc[character] == ' '):
+    current_word = current_word.upper()
+    
+    if (user_doc[character] == ' '):
+        if current_word in common_words: # Skips common words
+            current_word = ''
+            continue
+        else:
+            add_word(current_word)
+            current_word = ''
 
-# ----------------------------
-# (1)Make this if/else a function
-        if current_word in words_used:
-            words_used[current_word] += 1
-        else: # For new words
-            words_used[current_word] = 1
-        current_word = ''
-# ----------------------------
-# ----------------------------
-# (1)Make this if/else a function
-if current_word in words_used:
-    words_used[current_word] += 1
-else: # For new words
-    words_used[current_word] = 1
-    current_word = ''
-# ----------------------------
+add_word(current_word.upper()) # Last word
 
 print(words_used)
 
-    
-
-# FIXME: ignore punctuation . , ! ? : ; " / ( ) % - 
+# FIXME: Print a specific number of the top most used words 10, 20 etc.
 
 
 
-# FIXME: ignore common words: and or the for etc. (look up a list of these words for reference)
+# FIXME: Let the user input how many of the top words they want to see
