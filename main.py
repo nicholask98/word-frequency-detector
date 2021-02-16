@@ -37,6 +37,17 @@ add_word(current_word.upper()) # Last word
 
 print(words_used)
 
+#FIXME: If an enter/return is used in the document pasted, the program currently
+# treats it as the user pressing enter. Therefore everything after the first return
+# in the document is not counted. ****
+
+# ****  
+# upon some further research, it seems that I need to read in a user document from a
+# file, and not from the terminal. The return key is reserved for finalizing the user
+# input, and cannot be used in any other way. 
+
+
+
 # FIXME: Print a specific number of the top most used words 10, 20 etc.
 
 
