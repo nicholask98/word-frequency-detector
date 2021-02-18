@@ -53,3 +53,11 @@ print(words_used)
 
 
 # FIXME: Let the user input how many of the top words they want to see
+
+
+# FIXME: Look into split() function for strings. May be able to replace your
+# work involving detecting spaces in the user input.
+
+# --- My current understanding is that it removes specified sequences of 
+# characters from a string, and puts each resulting section into a list with
+# its own index.
